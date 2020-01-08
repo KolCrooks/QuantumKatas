@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 namespace Quantum.Kata.BasicGates {
+    open Microsoft.Quantum.Arrays;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Math;
 
@@ -52,6 +53,7 @@ namespace Quantum.Kata.BasicGates {
         // Then rebuild the project and rerun the tests - T11_StateFlip_Test should now pass!
 
         // ...
+        X(q);
     }
 
 
@@ -65,6 +67,7 @@ namespace Quantum.Kata.BasicGates {
     // |0⟩ and |1⟩ are called Z basis.
     operation BasisChange (q : Qubit) : Unit is Adj+Ctl {
         // ...
+        H(q);
     }
 
 
@@ -73,6 +76,7 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Change the qubit state to α |0⟩ - β |1⟩ (flip the sign of |1⟩ component of the superposition).
     operation SignFlip (q : Qubit) : Unit is Adj+Ctl {
         // ...
+        Z(q);
     }
 
 
@@ -88,6 +92,7 @@ namespace Quantum.Kata.BasicGates {
     // i.e., applying it for a second time does not return the qubit to the original state. 
     operation AmplitudeChange (alpha : Double, q : Qubit) : Unit is Adj+Ctl {
         // ...
+        Ry(alpha * 2.0, q);
     }
 
 
@@ -96,6 +101,7 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Change the qubit state to α |0⟩ + iβ |1⟩ (flip the phase of |1⟩ component of the superposition).
     operation PhaseFlip (q : Qubit) : Unit is Adj+Ctl {
         // ...
+        S(q);
     }
 
 
@@ -109,6 +115,7 @@ namespace Quantum.Kata.BasicGates {
     //        If the qubit is in superposition, change its state according to the effect on basis vectors.
     operation PhaseChange (alpha : Double, q : Qubit) : Unit is Adj+Ctl {
         // ...
+        R1(alpha, q);
     }
 
     // Task 1.7. Global phase change
@@ -123,6 +130,7 @@ namespace Quantum.Kata.BasicGates {
     // in later katas as part of more complicated tasks.
     operation GlobalPhaseChange (q: Qubit) : Unit is Adj+Ctl {
         // ...
+        Ry(PI() * 2.0,q);
     }
 
 
@@ -131,6 +139,9 @@ namespace Quantum.Kata.BasicGates {
     // Goal:  Change the two-qubit state to |Φ⁻⟩ = (|00⟩ - |11⟩) / sqrt(2).
     operation BellStateChange1 (qs : Qubit[]) : Unit is Adj+Ctl {
         // ...
+       for (q in IndexRange(qs)) {
+           Z(qs[q]);
+        }
     }
 
 
